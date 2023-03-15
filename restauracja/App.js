@@ -2,11 +2,27 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen' ;
+import DummyComponent from './DummyComponent' ;
 
 const Stack = createNativeStackNavigator()
+const Drawer = createDrawerNavigator()
+
+function DrawerNavigator(){
+
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="MealsCategories" component={CategoriesScreen} />
+      <Drawer.Screen name="Dummy" component={DummyComponent} />
+    
+    </Drawer.Navigator>
+  )
+}
+
+
 
 export default function App() {
   return (
@@ -20,8 +36,8 @@ export default function App() {
               headerTintColor: "white"
             }}
         >
-            <Stack.Screen name="MealsCategories" 
-                          component={CategoriesScreen}
+            <Stack.Screen name="DrawerScreen" 
+                          component={DrawerNavigator}
                           options={{
                             title: "To jest mój tytuł"
                           }} />
@@ -49,3 +65,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+// name="MealsCategories" 
+// component={CategoriesScreen}
