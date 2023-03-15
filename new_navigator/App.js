@@ -4,19 +4,31 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import FirstScreen from './FirstScreen' ;
 import SecondScreen from './SecondScreen' ;
-const Drawer = createDrawerNavigator();
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
+// const Drawer = createDrawerNavigator();
+const BottomTab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="First" 
+      <BottomTab.Navigator
+        screenOptions={{
+          headerStyle:{ backgroundColor: '#445566'},
+          headerTintColor: 'white'
+        }}
+        >
+        <BottomTab.Screen name="First" 
                        component={FirstScreen} 
-                       
+                       options={{
+                        tabBarIcon: ({color, size}) => (<Ionicons name="home" 
+                                                                  color={color} 
+                                                                  size={size} /> )
+                       }}
         />
-        <Drawer.Screen name="Second" component={SecondScreen} />
-      </Drawer.Navigator>
+        <BottomTab.Screen name="Second" component={SecondScreen} />
+      </BottomTab.Navigator>
     </NavigationContainer>
    
   );
